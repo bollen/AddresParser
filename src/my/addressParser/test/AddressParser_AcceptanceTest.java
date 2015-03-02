@@ -6,23 +6,30 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import static org.mockito.Mockito.mock;
 
 public class AddressParser_AcceptanceTest {
 /*
- * (5p) Skapa acceptancetest fÃ¶r projektet. 
- * Vi definierar acceptancetestet som fÃ¶ljande: GÃ¶r objekt av FileChooser, 
- * Ã¶ppna GUI:en, stÃ¤ng fÃ¶nstret, assert att fÃ¶nstret Ã¶ppnades och 
- * assert att fÃ¶nstret stÃ¤ngdes
+ * (5p) Skapa acceptancetest för projektet. 
+ * Vi definierar acceptancetestet som följande: Gör objekt av FileChooser, 
+ * Öppna GUI:en, stäng fönstret, assert att fönstret öppnades och 
+ * assert att fönstret stängdes
  */
 	@Test
 	public void FileChooser_openGUI_guiOpen(){
+		
+		//create object for filechooser
 		FileChooser fc = new FileChooser();
 		assertNotNull(fc);
+		
+		//start and show gui
 		fc.createAndShowGUI();
-		assertTrue(fc.isVisible());
+		//assert gui is visible
+		assertTrue(fc.frame.isVisible());
+		
+		//close the window
 		fc.frame.dispose();
-		//FIXME: assert window closed
-		//assertNull(fc);
-		//assertFalse(fc.isVisible());
+		//assert that the window is no longer visible
+		assertFalse(fc.frame.isVisible());
 	}
 }
