@@ -3,17 +3,14 @@ package my.addressParser.test;
 import my.addressParser.FileChooser;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
-
-import static org.mockito.Mockito.mock;
 
 public class AddressParser_AcceptanceTest {
 /*
- * (5p) Skapa acceptancetest för projektet. 
- * Vi definierar acceptancetestet som följande: Gör objekt av FileChooser, 
- * Öppna GUI:en, stäng fönstret, assert att fönstret öppnades och 
- * assert att fönstret stängdes
+ * (5p) Skapa acceptancetest fï¿½r projektet. 
+ * Vi definierar acceptancetestet som fï¿½ljande: Gï¿½r objekt av FileChooser, 
+ * ï¿½ppna GUI:en, stï¿½ng fï¿½nstret, assert att fï¿½nstret ï¿½ppnades och 
+ * assert att fï¿½nstret stï¿½ngdes
  */
 	@Test
 	public void FileChooser_openGUI_guiOpen(){

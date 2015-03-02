@@ -8,18 +8,32 @@ public class SearcherTest {
 	
 	//@Test
 	/* new searcher
-	 * streetnumber
-	 * flatnumber
-	 * streettype
-	 * streetname
-	 * suburb
-	 * postcode
-	 * isPObox
-	 * isLockedBag
+	 * streetnumber		(^|\\s|/)\\d{1,4}\\s
+	 * flatnumber		d{1,4}/
+	 * streettype		s[a-zA-Z]{2,}$
+	 * streetname		D{4,}
+	 * suburb			\\s|,\\s|\\d{4},\\s|\\d{4}\\s)*[a-zA-Z]{4,}$
+	 * postcode			3\\d{3}
+	 * isPObox			\\s(B|b)(O|o)(x|X)\\s
+	 * isLockedBag		\\s(B|b)(A|a)(G|g)\\s
 	 * finder
+	 * 
+	 * the addresses that we look for should be in the following format:
+	 * FLATNUMBER	0-9999
+	 * 	
+	 * 
 	 */
 	
 	@Test
+	public void streetNumber(){
+		Searcher s = new Searcher();
+		String address = "TestStreet 11/12";
+		String expected = "12";
+		s.setInput_text(address);
+		assertEquals(s.streetNumber(), expected);
+	}
+	
+	/*@Test
 	public void StreetNumber_emptyString_null(){
 		String test = "";
 		Searcher s = new Searcher();
@@ -43,6 +57,6 @@ public class SearcherTest {
 		assertNull(s.streetNumber());
 		
 	}
-	
+	*/
 
 }
