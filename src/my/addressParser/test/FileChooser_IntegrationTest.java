@@ -5,29 +5,28 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InvalidObjectException;
 
 import my.addressParser.FileChooser;
 
 import org.junit.Test;
 
 public class FileChooser_IntegrationTest {
-	
- /*
-  * (10p) Skapa integrationstest för programmet. 
-  * Gör ett integrationstest för en riktig fil som skall lyckas att köras 
-  * och ett integrationstest för en fil som inte finns.
-  */
+
 	@Test
 	public void OpenFile_ValidFile_FileOpened() throws FileNotFoundException, IOException {
 		
 		FileChooser fc = new FileChooser();
-		String path = System.getProperty("user.dir");
-		File outputFile = new File(path +"\\src/addresses.csv");
-		File inputFile = new File(path + "\\src/testaddress.txt");
+		String path = System.getProperty("user.dir") 
+				+ File.separator 
+				+ "src" + File.separator;
+		
+		//String path = System.getProperty("user.dir");
+		//System.out.println(path + File.separator);
+		File outputFile = new File(path + "addresses.csv");
+		File inputFile = new File(path + "testaddress.txt");
 		
 		try { outputFile.delete(); } catch(Exception e) {}
-		//System.out.println("Current dir: " + path);
+		System.out.println("Current dir: " + path);
 		
 		assertFalse(outputFile.exists());
 		fc.parseFile(inputFile);

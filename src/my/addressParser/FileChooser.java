@@ -3,7 +3,6 @@ package my.addressParser;
 
 
 import java.awt.BorderLayout;
-import java.awt.Dialog;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -76,6 +76,7 @@ public class FileChooser extends JPanel implements ActionListener {
 		add(buttonPanel, BorderLayout.PAGE_START);
 		add(logScrollPane, BorderLayout.CENTER);
 	}
+
 	public void actionPerformed(ActionEvent e) {
 
 		// Handle open button action.
@@ -84,15 +85,16 @@ public class FileChooser extends JPanel implements ActionListener {
 
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
+				
 				// This is where a real application would open the file.
 				try {
 					parseFile(file);
 				} catch (FileNotFoundException e1) { 
-					
-					//e1.printStackTrace();
+					JOptionPane.showMessageDialog(this.getParent(), e1.getMessage(), 
+							"File Not Found", JOptionPane.ERROR_MESSAGE);
 				} catch (IOException e1) {
-					
-					//e1.printStackTrace();
+					JOptionPane.showMessageDialog(this.getParent(), e1.getMessage(), 
+							"Input/Output Error", JOptionPane.ERROR_MESSAGE);
 				} 
 			} else {
 				log.append("Open command cancelled by user." + newline);
@@ -145,8 +147,8 @@ public class FileChooser extends JPanel implements ActionListener {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			Searcher searcher = new Searcher();
 			String path = file.getParent();
-			FileWriter outputFile = new FileWriter(path
-					+ "\\addresses.csv");
+			FileWriter outputFile = new FileWriter(path + File.separator
+					+ "addresses.csv");
 			outputFile.write("NMI,Street Number,Street Name,Street Type,\n");
 			int counter = 0;
 			String initialInput;

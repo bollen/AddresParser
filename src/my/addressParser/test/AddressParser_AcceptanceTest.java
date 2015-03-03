@@ -6,12 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class AddressParser_AcceptanceTest {
-/*
- * (5p) Skapa acceptancetest f�r projektet. 
- * Vi definierar acceptancetestet som f�ljande: G�r objekt av FileChooser, 
- * �ppna GUI:en, st�ng f�nstret, assert att f�nstret �ppnades och 
- * assert att f�nstret st�ngdes
- */
+
 	@Test
 	public void FileChooser_openGUI_guiOpen(){
 		
