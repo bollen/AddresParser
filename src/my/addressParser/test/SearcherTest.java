@@ -60,5 +60,19 @@ public class SearcherTest {
 		
 	}
 	*/
-
+	@Test
+	public void postCode_emptystring_null() {
+		Searcher s = new Searcher();
+		String test = "";
+		s.setInput_text(test);
+		assertNull(s.postCode());
+	}
+	/*
+	@Test
+	public void postCode_validstring_true() {
+		Searcher s = new Searcher();
+		String test = "01234";
+		s.setInput_text(test);
+		assertTrue(s.)
+	}*/
 }
