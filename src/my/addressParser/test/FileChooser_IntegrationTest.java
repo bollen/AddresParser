@@ -34,7 +34,7 @@ public class FileChooser_IntegrationTest {
 		assertTrue(outputFile.exists());
 	}
 	
-	@Test (expected = InvalidObjectException.class)
+	@Test (expected = FileNotFoundException.class)
 	public void OpenFile_NoFile_Exception() throws FileNotFoundException, IOException {
 		
 		FileChooser fc = new FileChooser();
@@ -42,5 +42,6 @@ public class FileChooser_IntegrationTest {
 		File inputFile = new File(path + "\\src/invalidfile.txt");
 		
 		fc.parseFile(inputFile);
+		assertFalse(inputFile.exists());
 	}
 }

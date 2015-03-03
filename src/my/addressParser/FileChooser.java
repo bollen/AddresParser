@@ -88,11 +88,11 @@ public class FileChooser extends JPanel implements ActionListener {
 				try {
 					parseFile(file);
 				} catch (FileNotFoundException e1) { 
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					
+					//e1.printStackTrace();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					
+					//e1.printStackTrace();
 				} 
 			} else {
 				log.append("Open command cancelled by user." + newline);
