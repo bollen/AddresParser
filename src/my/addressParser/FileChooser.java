@@ -3,6 +3,7 @@ package my.addressParser;
 
 
 import java.awt.BorderLayout;
+import java.awt.Dialog;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -84,51 +85,9 @@ public class FileChooser extends JPanel implements ActionListener {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
 				// This is where a real application would open the file.
-				log.append("Processing: " + file.getName() + "." + newline);
 				try {
-					BufferedReader br = new BufferedReader(new FileReader(file));
-					Searcher searcher = new Searcher();
-					String path = file.getParent();
-					FileWriter outputFile = new FileWriter(path
-							+ "\\addresses.csv");
-					outputFile.write("NMI,Street Number,Street Name,Street Type,\n");
-					int counter = 0;
-					String initialInput;
-					while ((initialInput = br.readLine()) != null) {
-						//main section where all the magic is performed
-						counter++;
-						System.out.println(counter + ": " + initialInput);
-						String[] initialInputArray = initialInput.split(",");
-						String input = initialInputArray[1];
-						String nmi = initialInputArray[0];
-						searcher.setInput_text(input);
-						String outputString;
-						log.append("Processing: " + input + newline);
-						if (searcher.isPOBox() || searcher.isLockedBag()) {
-							outputString = nmi + "," + null + "," + input + ",\n";
-						} else {
-							String streetNo = searcher.streetNumber();
-							String streetName = searcher.streetName();
-							String streetType = searcher.streetType();
-							outputString = nmi + "," + streetNo + ","
-									+ streetName + "," + streetType + ",\n";
-						}
-						outputFile.write(outputString);
-						System.out.println("writting line: " + counter + " " + outputString);
-						/*if (counter%1000 == 0){
-							new java.util.Scanner(System.in).nextLine();
-						}*/
-						outputString = null;
-						input = null;
-						initialInput = null;
-						initialInputArray = null;
-					}
-					br.close();
-					outputFile.close();
-					log.append(newline + "Processing successfully completed!"
-							+ newline + "Results saved in addresses.csv"
-							+ newline);
-				} catch (FileNotFoundException e1) {
+					parseFile(file);
+				} catch (FileNotFoundException e1) { 
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (IOException e1) {
@@ -177,5 +136,58 @@ public class FileChooser extends JPanel implements ActionListener {
 				FileChooser.createAndShowGUI();
 			}
 		});
+	}
+	
+	public void parseFile(File file) throws FileNotFoundException, IOException{
+		
+		log.append("Processing: " + file.getName() + "." + newline);
+
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			Searcher searcher = new Searcher();
+			String path = file.getParent();
+			FileWriter outputFile = new FileWriter(path
+					+ "\\addresses.csv");
+			outputFile.write("NMI,Street Number,Street Name,Street Type,\n");
+			int counter = 0;
+			String initialInput;
+			while ((initialInput = br.readLine()) != null) {
+				//main section where all the magic is performed
+				counter++;
+				System.out.println(counter + ": " + initialInput);
+				String[] initialInputArray = initialInput.split(",");
+				String input = "";		
+				try { 	
+				input = initialInputArray[1];
+				} catch (IndexOutOfBoundsException c8) {
+					c8.printStackTrace(); //FIXME PLZ
+				}
+				String nmi = initialInputArray[0];
+				searcher.setInput_text(input);
+				String outputString;
+				log.append("Processing: " + input + newline);
+				if (searcher.isPOBox() || searcher.isLockedBag()) {
+					outputString = nmi + "," + null + "," + input + ",\n";
+				} else {
+					String streetNo = searcher.streetNumber();
+					String streetName = searcher.streetName();
+					String streetType = searcher.streetType();
+					outputString = nmi + "," + streetNo + ","
+							+ streetName + "," + streetType + ",\n";
+				}
+				outputFile.write(outputString);
+				System.out.println("writting line: " + counter + " " + outputString);
+				/*if (counter%1000 == 0){
+					new java.util.Scanner(System.in).nextLine();
+				}*/
+				outputString = null;
+				input = null;
+				initialInput = null;
+				initialInputArray = null;
+			}
+			br.close();
+			outputFile.close();
+			log.append(newline + "Processing successfully completed!"
+					+ newline + "Results saved in addresses.csv"
+					+ newline);
 	}
 }

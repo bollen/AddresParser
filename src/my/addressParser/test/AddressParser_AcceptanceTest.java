@@ -20,13 +20,13 @@ public class AddressParser_AcceptanceTest {
 		assertNotNull(fc);
 		
 		//start and show gui
-		fc.createAndShowGUI();
+		FileChooser.createAndShowGUI();
 		//assert gui is visible
-		assertTrue(fc.frame.isVisible());
+		assertTrue(FileChooser.frame.isVisible());
 		
 		//close the window
-		fc.frame.dispose();
+		FileChooser.frame.dispose();
 		//assert that the window is no longer visible
-		assertFalse(fc.frame.isVisible());
+		assertFalse(FileChooser.frame.isVisible());
 	}
 }
