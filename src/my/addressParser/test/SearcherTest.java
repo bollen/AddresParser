@@ -67,6 +67,27 @@ public class SearcherTest {
 		s.setInput_text(test);
 		assertNull(s.postCode());
 	}
+	
+	@Test
+	public void RegexTestIsPOBox_ValidPOBoxString_true(){
+		Searcher s = new Searcher();
+		String[] testStrings = {" BOX ", " box ", " Box "};
+		for(String test : testStrings){
+			s.setInput_text(test);
+			assertTrue(s.isPOBox());
+		}
+	}
+	
+	@Test
+	public void RegexTestIsLockedBag_ValidLockedBagString_true(){
+		Searcher s = new Searcher();
+		String[] testStrings = {" BAG ", " bag ", " Bag "};
+		for(String test : testStrings){
+			s.setInput_text(test);
+			assertTrue(s.isLockedBag());
+		}	
+	}
+	
 	/*
 	@Test
 	public void postCode_validstring_true() {
