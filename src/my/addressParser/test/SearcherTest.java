@@ -109,7 +109,7 @@ public class SearcherTest {
 		Searcher s = new Searcher();
 		String test = "3210";
 		s.setInput_text(test);
-		assertTrue(s.postCode() == test);
+		assertEquals(test, s.postCode());
 	}
 	
 	@Test
@@ -117,6 +117,6 @@ public class SearcherTest {
 		Searcher s = new Searcher();
 		String test = "33100";
 		s.setInput_text(test);
-		assertFalse(s.postCode() == test);
+		assertNotEquals(test, s.postCode());
 	}
 }
