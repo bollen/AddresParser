@@ -119,4 +119,21 @@ public class SearcherTest {
 		s.setInput_text(test);
 		assertNotEquals(test, s.postCode());
 	}
+	
+	@Test
+	public void streetType_streetNameWithType_expected() {
+		Searcher s = new Searcher();
+		String test = "Derpington Road";
+		String expected = " Road";
+		s.setInput_text(test);
+		assertEquals(expected, s.streetType());
+	}
+	
+	@Test
+	public void streetType_streetNameWithOutType_null() {
+		Searcher s = new Searcher();
+		String test = "Derpstreet";
+		s.setInput_text(test);
+		assertNull(s.streetType());
+	}
 }
