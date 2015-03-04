@@ -88,12 +88,19 @@ public class SearcherTest {
 		}	
 	}
 	
-	/*
 	@Test
-	public void postCode_validstring_true() {
+	public void postCode_validString_true() {
 		Searcher s = new Searcher();
-		String test = "01234";
+		String test = "3210";
 		s.setInput_text(test);
-		assertTrue(s.)
-	}*/
+		assertTrue(s.postCode() == test);
+	}
+	
+	@Test
+	public void postCode_tooLong_True() {
+		Searcher s = new Searcher();
+		String test = "33100";
+		s.setInput_text(test);
+		assertFalse(s.postCode() == test);
+	}
 }
