@@ -27,12 +27,13 @@ public class SearcherTest {
 	@Test
 	public void streetNumber(){
 		Searcher s = new Searcher();
-		String address = "TestStreet 11/12";
-		String expected = "12";
+		String address = "TestStreet 11/12 ";
+		String expected = "12 ";
 		s.setInput_text(address);
-		s.streetName();
-		s.flatNumber();
-		//assertEquals(s.streetNumber(), expected);
+		//s.streetName();
+		//s.flatNumber();
+		s.streetNumber();
+		assertEquals(s.streetNumber(), expected);
 	}
 	
 	/*@Test
