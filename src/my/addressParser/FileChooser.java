@@ -142,7 +142,7 @@ public class FileChooser extends JPanel implements ActionListener {
 	
 	public void parseFile(File file) throws FileNotFoundException, IOException{
 		
-		log.append("Processing: " + file.getName() + "." + newline);
+		log.append("Processing: " + file.getName() + "." + newline); 
 
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			Searcher searcher = new Searcher();

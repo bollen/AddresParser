@@ -15,7 +15,7 @@ public class AddressParser_AcceptanceTest {
 		assertNotNull(fc);
 		
 		//start and show gui
-		FileChooser.createAndShowGUI();
+		FileChooser.createAndShowGUI(); 
 		//assert gui is visible
 		assertTrue(FileChooser.frame.isVisible());
 		

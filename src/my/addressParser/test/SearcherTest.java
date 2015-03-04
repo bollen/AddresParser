@@ -6,24 +6,6 @@ import org.junit.*;
 
 public class SearcherTest {
 	
-	//@Test
-	/* new searcher
-	 * streetnumber		(^|\\s|/)\\d{1,4}\\s
-	 * flatnumber		d{1,4}/
-	 * streettype		s[a-zA-Z]{2,}$
-	 * streetname		D{4,}
-	 * suburb			\\s|,\\s|\\d{4},\\s|\\d{4}\\s)*[a-zA-Z]{4,}$
-	 * postcode			3\\d{3}
-	 * isPObox			\\s(B|b)(O|o)(x|X)\\s
-	 * isLockedBag		\\s(B|b)(A|a)(G|g)\\s
-	 * finder
-	 * 
-	 * the addresses that we look for should be in the following format:
-	 * FLATNUMBER	0-9999
-	 * 	
-	 * 
-	 */
-	
 	@Test
 	public void streetNumber(){
 		Searcher s = new Searcher();
@@ -51,31 +33,6 @@ public class SearcherTest {
 		assertEquals(expected, s.streetName());
 	}
 
-	/*@Test
-	public void StreetNumber_emptyString_null(){
-		String test = "";
-		Searcher s = new Searcher();
-		s.setInput_text(test);
-		assertNull(s.streetNumber());
-	}
-	
-	@Test
-	public void StreetNumber_number_number(){
-		String test = "1234";
-		Searcher s = new Searcher();
-		s.setInput_text(test);
-		assertEquals(s.streetNumber(), test);
-	}
-	
-	@Test
-	public void StreetNumber_string_null(){
-		String test = "abcd";
-		Searcher s = new Searcher();
-		s.setInput_text(test);
-		assertNull(s.streetNumber());
-		
-	}
-	*/
 	@Test
 	public void postCode_emptystring_null() {
 		Searcher s = new Searcher();
@@ -135,5 +92,16 @@ public class SearcherTest {
 		String test = "Derpstreet";
 		s.setInput_text(test);
 		assertNull(s.streetType());
+	}
+	
+	@Test
+	public void Address_ValidInput_expected() {
+		Searcher s = new Searcher();
+		String toTest = "Test Road 1 Box 3033";
+		s.setInput_text(toTest);
+		assertEquals("Test Road ", s.streetName());
+		assertEquals(" 1 ", s.streetNumber());
+		assertEquals("3033", s.postCode());
+		assertTrue(s.isPOBox());
 	}
 }

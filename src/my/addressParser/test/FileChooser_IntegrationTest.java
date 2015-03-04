@@ -20,8 +20,6 @@ public class FileChooser_IntegrationTest {
 				+ File.separator 
 				+ "src" + File.separator;
 		
-		//String path = System.getProperty("user.dir");
-		//System.out.println(path + File.separator);
 		File outputFile = new File(path + "addresses.csv");
 		File inputFile = new File(path + "testaddress.txt");
 		
