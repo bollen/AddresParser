@@ -27,15 +27,30 @@ public class SearcherTest {
 	@Test
 	public void streetNumber(){
 		Searcher s = new Searcher();
-		String address = "TestStreet 11/12 ";
+		String toTest = "TestStreet 11/12 ";
 		String expected = "12 ";
-		s.setInput_text(address);
-		//s.streetName();
-		//s.flatNumber();
-		s.streetNumber();
-		assertEquals(s.streetNumber(), expected);
+		s.setInput_text(toTest);
+		assertEquals(expected, s.streetNumber());
 	}
 	
+	@Test
+	public void flatNumber_String_expected(){
+		Searcher s = new Searcher();
+		String toTest = "TestStreet 11/12 ";
+		String expected = "11";
+		s.setInput_text(toTest);
+		assertEquals(expected, s.flatNumber());
+	}
+	
+	@Test
+	public void streetName_String_expected(){
+		Searcher s = new Searcher();
+		String toTest = "TestStreet 11/12 ";
+		String expected = "TestStreet ";
+		s.setInput_text(toTest);
+		assertEquals(expected, s.streetName());
+	}
+
 	/*@Test
 	public void StreetNumber_emptyString_null(){
 		String test = "";
@@ -70,7 +85,7 @@ public class SearcherTest {
 	}
 	
 	@Test
-	public void RegexTestIsPOBox_ValidPOBoxString_true(){
+	public void isPOBox_ValidPOBoxString_true(){
 		Searcher s = new Searcher();
 		String[] testStrings = {" BOX ", " box ", " Box "};
 		for(String test : testStrings){
@@ -80,7 +95,7 @@ public class SearcherTest {
 	}
 	
 	@Test
-	public void RegexTestIsLockedBag_ValidLockedBagString_true(){
+	public void isLockedBag_ValidLockedBagString_true(){
 		Searcher s = new Searcher();
 		String[] testStrings = {" BAG ", " bag ", " Bag "};
 		for(String test : testStrings){
